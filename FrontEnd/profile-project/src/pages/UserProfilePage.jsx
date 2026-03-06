@@ -21,7 +21,7 @@ const UserProfilePage = () => {
   const [openCertificationForm, setOpenCertificationForm] = useState(false);
   const [openSkillForm, setOpenSkillForm] = useState(false);
 
-  console.log("In userProfile-Page : ", user);
+  // console.log("In userProfile-Page : ", user);
 
   return (
     <div>

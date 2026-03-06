@@ -7,27 +7,6 @@ const Section1 = ({ user, openEditForm }) => {
 
   const profile = user.profile || {};
 
-  console.log("profile Data : ", profile);
-
-  // const handleDownload = async () => {
-  //   try {
-  //     const response = await fetch(profile.resume);
-  //     const blob = await response.blob();
-
-  //     const url = window.URL.createObjectURL(blob);
-  //     const a = document.createElement("a");
-  //     a.href = url;
-  //     a.download = "resume.pdf";
-  //     document.body.appendChild(a);
-  //     a.click();
-  //     a.remove();
-
-  //     window.URL.revokeObjectURL(url);
-  //   } catch (error) {
-  //     console.error("Download failed", error);
-  //   }
-  // };
-
   return (
     <div style={styles.container}>
       {/* Top Section */}

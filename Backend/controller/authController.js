@@ -59,8 +59,8 @@ exports.login = async (req, res) => {
 
     res.cookie("token", UserToken, {
       httpOnly: true,
-      secure: false,
-      sameSite: "lax",
+      secure: true,
+      sameSite: "None",
       maxAge: Number(process.env.TOKEN_COOKIE_EXPIRES),
     });
 

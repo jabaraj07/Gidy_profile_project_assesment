@@ -6,7 +6,7 @@ import { Navigate } from "react-router-dom";
 const ProtectedRoute = ({ children }) => {
   const { user, loading } = useAuth();
 
-  console.log("Protected route user : ",user)
+  // console.log("Protected route user : ",user)
 
   if (loading) {
     return <p>Loading...</p>;
