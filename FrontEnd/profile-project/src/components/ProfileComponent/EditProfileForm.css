@@ -1,0 +1,325 @@
+@import url('https://fonts.googleapis.com/css2?family=Google+Sans:wght@400;500;600;700&display=swap');
+
+/* ── Modal overlay ────────────────────────────────────────────────────────── */
+.edit-modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.45);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  padding: 16px;
+  box-sizing: border-box;
+}
+
+/* ── Modal card ───────────────────────────────────────────────────────────── */
+.edit-modal {
+  background: #fff;
+  border-radius: 14px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.18);
+  padding: 32px 32px 28px;
+  width: 100%;
+  max-width: 460px;
+  max-height: 90vh;
+  overflow-y: auto;
+  box-sizing: border-box;
+  font-family: 'Google Sans', 'Roboto', sans-serif;
+}
+
+/* ── Avatar section ───────────────────────────────────────────────────────── */
+.edit-avatar-wrap {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 28px;
+}
+
+.edit-avatar {
+  position: relative;
+  width: 96px;
+  height: 96px;
+}
+
+.edit-avatar__img {
+  width: 96px;
+  height: 96px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 3px solid #e8eaed;
+  display: block;
+}
+
+.edit-avatar__placeholder {
+  width: 96px;
+  height: 96px;
+  border-radius: 50%;
+  background: #e8eaed;
+  border: 3px solid #dadce0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #9aa0a6;
+}
+
+.edit-avatar__placeholder svg {
+  width: 56px;
+  height: 56px;
+}
+
+/* Blue pencil edit badge */
+.edit-avatar__badge {
+  position: absolute;
+  bottom: 2px;
+  right: 2px;
+  width: 26px;
+  height: 26px;
+  background: #4285f4;
+  border-radius: 50%;
+  border: 2px solid #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background 0.18s, transform 0.15s;
+  box-shadow: 0 1px 4px rgba(66, 133, 244, 0.4);
+}
+
+.edit-avatar__badge:hover {
+  background: #3574e2;
+  transform: scale(1.1);
+}
+
+/* ── Form fields ──────────────────────────────────────────────────────────── */
+.edit-form__fields {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-bottom: 20px;
+}
+
+.edit-field {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.edit-field__label {
+  font-size: 13px;
+  font-weight: 500;
+  color: #3c4043;
+}
+
+.edit-field__label span {
+  color: #d32f2f;
+  margin-left: 2px;
+}
+
+/* Label row with counter inline */
+.edit-field__label-row {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+}
+
+.edit-field__counter {
+  font-size: 12px;
+  color: #9aa0a6;
+  font-weight: 400;
+}
+
+/* ── Text input ───────────────────────────────────────────────────────────── */
+.edit-field__input {
+  width: 100%;
+  padding: 10px 12px;
+  border: 1.5px solid #dadce0;
+  border-radius: 6px;
+  font-size: 14px;
+  font-family: 'Google Sans', 'Roboto', sans-serif;
+  color: #202124;
+  background: #fff;
+  outline: none;
+  transition: border-color 0.2s, box-shadow 0.2s;
+  box-sizing: border-box;
+}
+
+.edit-field__input:focus {
+  border-color: #4285f4;
+  box-shadow: 0 0 0 3px rgba(66, 133, 244, 0.12);
+}
+
+.edit-field__input:disabled {
+  background: #f1f3f4;
+  color: #80868b;
+  cursor: not-allowed;
+}
+
+.edit-field__input.error {
+  border-color: #d32f2f;
+}
+
+/* ── Textarea (Bio) ───────────────────────────────────────────────────────── */
+.edit-field__textarea {
+  width: 100%;
+  padding: 10px 12px;
+  border: 1.5px solid #dadce0;
+  border-radius: 6px;
+  font-size: 14px;
+  font-family: 'Google Sans', 'Roboto', sans-serif;
+  color: #202124;
+  background: #fff;
+  outline: none;
+  resize: vertical;
+  min-height: 110px;
+  line-height: 1.6;
+  transition: border-color 0.2s, box-shadow 0.2s;
+  box-sizing: border-box;
+}
+
+.edit-field__textarea:focus {
+  border-color: #4285f4;
+  box-shadow: 0 0 0 3px rgba(66, 133, 244, 0.12);
+}
+
+.edit-field__textarea::placeholder {
+  color: #adb5bd;
+}
+
+.edit-field__error {
+  font-size: 12px;
+  color: #d32f2f;
+  margin: 2px 0 0;
+}
+
+/* ── Resume upload zone ───────────────────────────────────────────────────── */
+.resume-upload {
+  border: 2px dashed #c9cdd2;
+  border-radius: 10px;
+  background: #f8f9fa;
+  padding: 24px 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  cursor: pointer;
+  transition: border-color 0.2s, background 0.2s;
+  box-sizing: border-box;
+}
+
+.resume-upload:hover {
+  border-color: #4285f4;
+  background: #f0f4ff;
+}
+
+.resume-upload.has-file {
+  border-color: #34a853;
+  background: #f0faf3;
+}
+
+.resume-upload input[type="file"] {
+  display: none;
+}
+
+.resume-upload__icon {
+  color: #9aa0a6;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.resume-upload.has-file .resume-upload__icon {
+  color: #34a853;
+}
+
+.resume-upload__btn {
+  padding: 8px 20px;
+  background: #e8eaed;
+  color: #3c4043;
+  border: none;
+  border-radius: 6px;
+  font-size: 12px;
+  font-weight: 700;
+  font-family: 'Google Sans', 'Roboto', sans-serif;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  pointer-events: none;
+}
+
+.resume-upload:hover .resume-upload__btn {
+  background: #dadce0;
+}
+
+.resume-upload.has-file .resume-upload__btn {
+  background: #d4edda;
+  color: #1a7a3c;
+}
+
+.resume-upload__text {
+  font-size: 12px;
+  color: #34a853;
+  font-weight: 500;
+  margin: 0;
+  text-align: center;
+  word-break: break-all;
+}
+
+/* ── Action buttons ───────────────────────────────────────────────────────── */
+.edit-form__actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  margin-top: 24px;
+}
+
+.edit-btn--cancel {
+  padding: 10px 22px;
+  background: none;
+  border: none;
+  color: #4285f4;
+  font-size: 14px;
+  font-weight: 600;
+  font-family: 'Google Sans', 'Roboto', sans-serif;
+  cursor: pointer;
+  border-radius: 6px;
+  transition: background 0.18s;
+  letter-spacing: 0.02em;
+}
+
+.edit-btn--cancel:hover {
+  background: #f0f4ff;
+}
+
+.edit-btn--save {
+  padding: 10px 26px;
+  background: #4285f4;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: 600;
+  font-family: 'Google Sans', 'Roboto', sans-serif;
+  cursor: pointer;
+  letter-spacing: 0.04em;
+  transition: background 0.18s, box-shadow 0.18s;
+  box-shadow: 0 1px 4px rgba(66, 133, 244, 0.3);
+}
+
+.edit-btn--save:hover:not(:disabled) {
+  background: #3574e2;
+  box-shadow: 0 3px 8px rgba(66, 133, 244, 0.35);
+}
+
+.edit-btn--save:disabled {
+  opacity: 0.65;
+  cursor: not-allowed;
+}
+
+/* ── Scrollbar ────────────────────────────────────────────────────────────── */
+.edit-modal::-webkit-scrollbar { width: 5px; }
+.edit-modal::-webkit-scrollbar-track { background: transparent; }
+.edit-modal::-webkit-scrollbar-thumb { background: #dadce0; border-radius: 4px; }
+
+/* ── Responsive ───────────────────────────────────────────────────────────── */
+@media (max-width: 480px) {
+  .edit-modal { padding: 28px 20px 24px; }
+}

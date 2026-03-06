@@ -1,0 +1,255 @@
+@import url('https://fonts.googleapis.com/css2?family=Google+Sans:wght@400;500;600;700&display=swap');
+
+/* ── Page wrapper ─────────────────────────────────────────────────────────── */
+.profile-page {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #f0f4f8;
+  font-family: 'Google Sans', 'Roboto', sans-serif;
+  padding: 24px 16px;
+  box-sizing: border-box;
+}
+
+/* ── Card ─────────────────────────────────────────────────────────────────── */
+.profile-card {
+  background: #ffffff;
+  border-radius: 16px;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.10), 0 0 0 1px rgba(0, 0, 0, 0.04);
+  padding: 48px 40px 40px;
+  width: 100%;
+  max-width: 420px;
+  box-sizing: border-box;
+}
+
+/* ── Header ───────────────────────────────────────────────────────────────── */
+.profile-card__title {
+  text-align: center;
+  font-size: 24px;
+  font-weight: 700;
+  color: #202124;
+  margin: 0 0 8px;
+  letter-spacing: -0.3px;
+}
+
+.profile-card__subtitle {
+  text-align: center;
+  font-size: 14px;
+  color: #5f6368;
+  margin: 0 0 32px;
+  line-height: 1.5;
+}
+
+/* ── Avatar upload ────────────────────────────────────────────────────────── */
+.profile-avatar-wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 28px;
+  cursor: pointer;
+}
+
+.profile-avatar-wrap input[type="file"] {
+  display: none;
+}
+
+.profile-avatar {
+  position: relative;
+  width: 88px;
+  height: 88px;
+  margin-bottom: 10px;
+}
+
+.profile-avatar__icon {
+  width: 88px;
+  height: 88px;
+  border-radius: 50%;
+  background: #e8eaed;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.profile-avatar__icon img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 50%;
+}
+
+.profile-avatar__icon svg {
+  width: 52px;
+  height: 52px;
+  color: #9aa0a6;
+}
+
+.profile-avatar__camera {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 28px;
+  height: 28px;
+  background: #4285f4;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 1px 4px rgba(66, 133, 244, 0.4);
+  transition: background 0.18s, transform 0.18s;
+}
+
+.profile-avatar-wrap:hover .profile-avatar__camera {
+  background: #3574e2;
+  transform: scale(1.08);
+}
+
+.profile-avatar__camera svg {
+  width: 15px;
+  height: 15px;
+  color: #fff;
+}
+
+.profile-avatar__label {
+  font-size: 13px;
+  color: #80868b;
+  text-align: center;
+  margin: 0;
+}
+
+/* ── Form fields ──────────────────────────────────────────────────────────── */
+.profile-form__fields {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  margin-bottom: 28px;
+}
+
+/* ── Field group (label above + input) ───────────────────────────────────── */
+.profile-field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.profile-field__label {
+  font-size: 14px;
+  font-weight: 500;
+  color: #202124;
+  font-family: 'Google Sans', 'Roboto', sans-serif;
+}
+
+.profile-field__label span {
+  color: #d32f2f;
+  margin-left: 2px;
+}
+
+.profile-field__input,
+.profile-field__select {
+  width: 100%;
+  padding: 13px 14px;
+  border: 1.5px solid #dadce0;
+  border-radius: 8px;
+  font-size: 15px;
+  font-family: 'Google Sans', 'Roboto', sans-serif;
+  color: #202124;
+  background: #fff;
+  outline: none;
+  transition: border-color 0.2s, box-shadow 0.2s;
+  box-sizing: border-box;
+  appearance: none;
+  -webkit-appearance: none;
+}
+
+.profile-field__input:focus,
+.profile-field__select:focus {
+  border-color: #4285f4;
+  box-shadow: 0 0 0 3px rgba(66, 133, 244, 0.12);
+}
+
+.profile-field__input.error,
+.profile-field__select.error {
+  border-color: #d32f2f;
+}
+
+.profile-field__input.error:focus,
+.profile-field__select.error:focus {
+  box-shadow: 0 0 0 3px rgba(211, 47, 47, 0.10);
+}
+
+/* Select arrow */
+.profile-field__select-wrap {
+  position: relative;
+}
+
+.profile-field__select-wrap::after {
+  content: '';
+  position: absolute;
+  right: 14px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 0;
+  height: 0;
+  border-left: 5px solid transparent;
+  border-right: 5px solid transparent;
+  border-top: 6px solid #5f6368;
+  pointer-events: none;
+}
+
+.profile-field__select {
+  padding-right: 38px;
+  cursor: pointer;
+}
+
+.profile-field__error {
+  font-size: 12px;
+  color: #d32f2f;
+  margin: 2px 0 0 2px;
+  font-family: 'Google Sans', 'Roboto', sans-serif;
+}
+
+/* ── Submit button ────────────────────────────────────────────────────────── */
+.profile-submit-btn {
+  width: 100%;
+  padding: 15px;
+  background: #4285f4;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  font-size: 15px;
+  font-weight: 600;
+  font-family: 'Google Sans', 'Roboto', sans-serif;
+  cursor: pointer;
+  letter-spacing: 0.02em;
+  transition: background 0.18s, box-shadow 0.18s, transform 0.12s;
+  box-shadow: 0 1px 4px rgba(66, 133, 244, 0.35);
+}
+
+.profile-submit-btn:hover:not(:disabled) {
+  background: #3574e2;
+  box-shadow: 0 3px 10px rgba(66, 133, 244, 0.4);
+  transform: translateY(-1px);
+}
+
+.profile-submit-btn:active:not(:disabled) {
+  transform: translateY(0);
+  box-shadow: 0 1px 4px rgba(66, 133, 244, 0.3);
+}
+
+.profile-submit-btn:disabled {
+  opacity: 0.65;
+  cursor: not-allowed;
+}
+
+/* ── Responsive ───────────────────────────────────────────────────────────── */
+@media (max-width: 480px) {
+  .profile-card {
+    padding: 36px 24px 32px;
+    border-radius: 12px;
+  }
+
+  .profile-card__title {
+    font-size: 21px;
+  }
+}
