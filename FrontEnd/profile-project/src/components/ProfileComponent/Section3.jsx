@@ -1,27 +1,53 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { useAuth } from "../../context/authContext";
 import ExperienceForm from "./ExperienceForm";
 import { DeleteExperience } from "../../api/userAuth";
+import "../ProfileComponentStyles/Section3.css";
 
+// ── Building icon ─────────────────────────────────────────────────────────────
+const BuildingIcon = () => (
+  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
+    <rect x="3" y="3" width="18" height="18" rx="2"/>
+    <path d="M9 3v18M15 3v18M3 9h6M3 15h6M15 9h6M15 15h6"/>
+  </svg>
+);
+
+// ── Item menu ─────────────────────────────────────────────────────────────────
+const ItemMenu = ({ onEdit, onDelete }) => {
+  const [open, setOpen] = useState(false);
+  const ref = useRef(null);
+
+  useEffect(() => {
+    const handler = (e) => {
+      if (ref.current && !ref.current.contains(e.target)) setOpen(false);
+    };
+    document.addEventListener("mousedown", handler);
+    return () => document.removeEventListener("mousedown", handler);
+  }, []);
+
+  return (
+    <div className="s3-menu-wrap" ref={ref}>
+      <button className="s3-menu-btn" onClick={() => setOpen((p) => !p)} aria-label="More options">⋮</button>
+      {open && (
+        <div className="s3-dropdown">
+          <div className="s3-dropdown__item" onClick={() => { onEdit(); setOpen(false); }}>Edit experience</div>
+          <div className="s3-dropdown__item s3-dropdown__item--danger" onClick={() => { onDelete(); setOpen(false); }}>Delete</div>
+        </div>
+      )}
+    </div>
+  );
+};
+
+// ── Section3 ──────────────────────────────────────────────────────────────────
 const Section3 = ({ user, openAdd = false, onCloseAdd }) => {
   const experience = user?.experience || [];
   const { fetchUser } = useAuth();
 
   const [showForm, setShowForm] = useState(false);
   const [editingExp, setEditingExp] = useState(null);
-  const [menuFor, setMenuFor] = useState(null); // index of experience showing menu
 
-  const handleAdd = () => {
-    setEditingExp(null);
-    setShowForm(true);
-  };
-
-  const handleEdit = (exp) => {
-    setEditingExp(exp);
-    setShowForm(true);
-    setMenuFor(null);
-  };
-
+  const handleAdd = () => { setEditingExp(null); setShowForm(true); };
+  const handleEdit = (exp) => { setEditingExp(exp); setShowForm(true); };
   const handleDelete = async (id) => {
     try {
       await DeleteExperience(id);
@@ -29,98 +55,60 @@ const Section3 = ({ user, openAdd = false, onCloseAdd }) => {
     } catch (err) {
       console.error("Failed to delete experience", err);
     }
-    setMenuFor(null);
   };
 
-    const formatDate = (dateStr) => {
+  const formatDate = (dateStr) => {
     if (!dateStr) return "";
-    const date = new Date(dateStr);
-    if (isNaN(date.getTime())) return "";
-    return date.toLocaleDateString('en-US', { month: 'long', year: 'numeric' });
+    const d = new Date(dateStr);
+    if (isNaN(d.getTime())) return "";
+    return d.toLocaleDateString("en-US", { month: "short", year: "numeric" });
   };
 
-  // open modal when parent requests
   useEffect(() => {
-    if (openAdd) {
-      setShowForm(true);
-    }
+    if (openAdd) setShowForm(true);
   }, [openAdd]);
 
   return (
-    <div>
-      <div style={{ display: "flex", justifyContent: "space-between" }}>
-        <h2>Experience</h2>
-        <button onClick={handleAdd}>➕</button>
+    <div className="s3-container">
+      {/* Header */}
+      <div className="s3-header">
+        <h2 className="s3-title">Experience</h2>
+        <button className="s3-add-btn" onClick={handleAdd} aria-label="Add experience">+</button>
       </div>
 
+      {/* List or empty */}
       {experience.length > 0 ? (
-        experience.map((exp, idx) => (
-          <div
-            key={exp._id}
-            style={{ display: "flex", marginTop: "5px", alignItems: "center" }}
-          >
-            <div>
-              <p>Logo</p>
+        experience.map((exp) => (
+          <div className="s3-item" key={exp._id}>
+            {/* Logo */}
+            <div className="s3-logo"><BuildingIcon /></div>
+
+            {/* Info */}
+            <div className="s3-info">
+              <p className="s3-role">{exp.role}</p>
+              <p className="s3-company">{exp.companyName}{exp.location ? `, ${exp.location}` : ""}</p>
+              <p className="s3-dates">
+                Started: {formatDate(exp.dateOfJoining)}
+                {" - "}
+                {exp.currentlyWorking ? "Present" : `Ended: ${formatDate(exp.dateOfLeaving)}`}
+              </p>
             </div>
 
-            <div
-              style={{
-                display: "flex",
-                justifyContent: "space-between",
-                width: "100%",
-              }}
-            >
-              <div>
-                <p>{exp.role}</p>
-                <p>{exp.companyName}, {exp.location}</p>
-                <p>
-                  {formatDate(exp.dateOfJoining)} - {exp.currentlyWorking ? "Present" : formatDate(exp.dateOfLeaving)}
-                </p>
-              </div>
-
-              <div style={{ position: "relative" }}>
-                <button onClick={() => setMenuFor(idx)}>:</button>
-                {menuFor === idx && (
-                  <div
-                    style={{
-                      position: "absolute",
-                      right: 0,
-                      background: "white",
-                      border: "1px solid #ccc",
-                      padding: "4px",
-                    }}
-                  >
-                    <div
-                      style={{ cursor: "pointer" }}
-                      onClick={() => handleEdit(exp)}
-                    >
-                      Edit experience
-                    </div>
-                    <div
-                      style={{ cursor: "pointer", color: "red" }}
-                      onClick={() => handleDelete(exp._id)}
-                    >
-                      Delete{exp._id}
-                    </div>
-                  </div>
-                )}
-              </div>
-            </div>
+            {/* Menu */}
+            <ItemMenu onEdit={() => handleEdit(exp)} onDelete={() => handleDelete(exp._id)} />
           </div>
         ))
       ) : (
-        <div style={{ textAlign: "center", cursor: "pointer" }} onClick={handleAdd}>
-          <p>Add Experience</p>
+        <div className="s3-empty" onClick={handleAdd}>
+          🔥 Add Your Experiences!
         </div>
       )}
 
+      {/* Form modal */}
       {showForm && (
         <ExperienceForm
           defaultValues={editingExp || {}}
-          onClose={() => {
-            setShowForm(false);
-            if (onCloseAdd) onCloseAdd();
-          }}
+          onClose={() => { setShowForm(false); onCloseAdd?.(); }}
         />
       )}
     </div>

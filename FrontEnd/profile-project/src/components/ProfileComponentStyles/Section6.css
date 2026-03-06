@@ -1,0 +1,90 @@
+@import url('https://fonts.googleapis.com/css2?family=Google+Sans:wght@400;500;600;700&display=swap');
+
+/* ── Container ────────────────────────────────────────────────────────────── */
+.s6-container {
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 1px 6px rgba(0, 0, 0, 0.08), 0 0 0 1px rgba(0, 0, 0, 0.04);
+  padding: 22px 24px 22px;
+  margin-bottom: 20px;
+  font-family: 'Google Sans', 'Roboto', sans-serif;
+}
+
+/* ── Header ───────────────────────────────────────────────────────────────── */
+.s6-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 18px;
+}
+
+.s6-title {
+  font-size: 17px;
+  font-weight: 700;
+  color: #202124;
+  margin: 0;
+}
+
+.s6-add-btn {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  border: 1.5px solid #dadce0;
+  background: #fff;
+  color: #5f6368;
+  font-size: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background 0.15s, border-color 0.15s;
+  line-height: 1;
+  padding: 0;
+}
+
+.s6-add-btn:hover {
+  background: #f1f3f4;
+  border-color: #bdc1c6;
+}
+
+/* ── Skills chip grid ─────────────────────────────────────────────────────── */
+.s6-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.s6-chip {
+  padding: 7px 16px;
+  border: 1.5px solid #dadce0;
+  border-radius: 50px;
+  font-size: 13px;
+  font-weight: 500;
+  color: #3c4043;
+  background: #fff;
+  font-family: 'Google Sans', 'Roboto', sans-serif;
+  white-space: nowrap;
+  transition: background 0.15s, border-color 0.15s;
+}
+
+.s6-chip:hover {
+  background: #f0f4ff;
+  border-color: #4285f4;
+  color: #4285f4;
+}
+
+/* ── Empty state ──────────────────────────────────────────────────────────── */
+.s6-empty {
+  text-align: center;
+  padding: 12px 0 4px;
+  font-size: 14px;
+  color: #80868b;
+  cursor: pointer;
+}
+
+/* ── Responsive ───────────────────────────────────────────────────────────── */
+@media (max-width: 480px) {
+  .s6-container {
+    padding: 18px 16px 18px;
+  }
+}

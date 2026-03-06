@@ -1,0 +1,88 @@
+@import url('https://fonts.googleapis.com/css2?family=Google+Sans:wght@400;500;600;700&display=swap');
+
+/* ── Page wrapper ─────────────────────────────────────────────────────────── */
+.profile-page {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 24px 20px;
+  font-family: 'Google Sans', 'Roboto', sans-serif;
+  box-sizing: border-box;
+  background: #f0f4f8;
+  min-height: 100vh;
+}
+
+/* ── Full-width rows ──────────────────────────────────────────────────────── */
+.profile-full {
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+/* ── Two-column grid ──────────────────────────────────────────────────────── */
+.profile-grid {
+  display: grid;
+  grid-template-columns: 1fr 1.6fr;
+  gap: 20px;
+  align-items: start;
+}
+
+/* Left column: ProfileCompletion + Skills */
+.profile-col-left {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* Right column: Experience + Education + Certification */
+.profile-col-right {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* ── Neutralise the old App.css .profile-section wrapper divs ─────────────── */
+/* The wrapping divs used in UserProfilePage must not add any box/padding */
+.profile-page .profile-section {
+  all: unset;
+  display: block;
+}
+
+.profile-page .profile-sections {
+  all: unset;
+  display: contents;
+}
+
+/* ── Responsive ───────────────────────────────────────────────────────────── */
+@media (max-width: 860px) {
+  .profile-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 480px) {
+  .profile-page {
+    padding: 12px 10px;
+  }
+}
+
+
+
+/* ── Remove individual section margins (grid gap handles spacing) ─────────── */
+.profile-col-left .s1-container,
+.profile-col-left .s2-container,
+.profile-col-left .s3-container,
+.profile-col-left .s4-container,
+.profile-col-left .s5-container,
+.profile-col-left .s6-container,
+.profile-col-right .s1-container,
+.profile-col-right .s2-container,
+.profile-col-right .s3-container,
+.profile-col-right .s4-container,
+.profile-col-right .s5-container,
+.profile-col-right .s6-container {
+  margin-bottom: 0;
+}
+
+.profile-full .s1-container,
+.profile-full .s2-container {
+  margin-bottom: 0;
+}

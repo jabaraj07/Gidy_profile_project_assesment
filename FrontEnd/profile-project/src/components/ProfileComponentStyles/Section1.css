@@ -1,0 +1,192 @@
+@import url('https://fonts.googleapis.com/css2?family=Google+Sans:wght@400;500;600;700&display=swap');
+
+/* ── Container ────────────────────────────────────────────────────────────── */
+.s1-container {
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 1px 6px rgba(0, 0, 0, 0.08), 0 0 0 1px rgba(0, 0, 0, 0.04);
+  padding: 24px 28px 20px;
+  margin-bottom: 20px;
+  font-family: 'Google Sans', 'Roboto', sans-serif;
+  position: relative;
+}
+
+/* ── Header row ───────────────────────────────────────────────────────────── */
+.s1-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.s1-header__left {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+/* ── Avatar ───────────────────────────────────────────────────────────────── */
+.s1-avatar {
+  width: 68px;
+  height: 68px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid #e8eaed;
+  flex-shrink: 0;
+}
+
+/* ── Name + role + location ───────────────────────────────────────────────── */
+.s1-identity {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.s1-name-row {
+  display: flex;
+  align-items: baseline;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+
+.s1-name {
+  font-size: 18px;
+  font-weight: 700;
+  color: #202124;
+  margin: 0;
+  line-height: 1.3;
+}
+
+.s1-role {
+  font-size: 14px;
+  font-weight: 400;
+  color: #5f6368;
+  margin: 0;
+  white-space: nowrap;
+}
+
+.s1-location {
+  font-size: 13px;
+  color: #80868b;
+  margin: 0;
+}
+
+/* ── Three-dot menu ───────────────────────────────────────────────────────── */
+.s1-menu-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 22px;
+  color: #5f6368;
+  padding: 4px 8px;
+  border-radius: 50%;
+  line-height: 1;
+  transition: background 0.15s;
+  flex-shrink: 0;
+}
+
+.s1-menu-btn:hover {
+  background: #f1f3f4;
+}
+
+/* ── Dropdown ─────────────────────────────────────────────────────────────── */
+.s1-dropdown {
+  position: absolute;
+  right: 28px;
+  top: 56px;
+  background: #fff;
+  border: 1px solid #e8eaed;
+  border-radius: 8px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12);
+  z-index: 10;
+  min-width: 140px;
+  overflow: hidden;
+}
+
+.s1-dropdown__item {
+  padding: 11px 16px;
+  font-size: 14px;
+  color: #202124;
+  cursor: pointer;
+  font-family: 'Google Sans', 'Roboto', sans-serif;
+  transition: background 0.15s;
+}
+
+.s1-dropdown__item:hover {
+  background: #f1f3f4;
+}
+
+/* ── Bio ──────────────────────────────────────────────────────────────────── */
+.s1-bio {
+  margin-top: 18px;
+  font-size: 14px;
+  color: #3c4043;
+  line-height: 1.7;
+}
+
+.s1-bio--empty {
+  color: #adb5bd;
+  font-style: italic;
+}
+
+/* ── Footer ───────────────────────────────────────────────────────────────── */
+.s1-footer {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  margin-top: 18px;
+  flex-wrap: wrap;
+}
+
+/* Email */
+.s1-email {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 14px;
+  color: #4285f4;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.s1-email svg {
+  flex-shrink: 0;
+}
+
+/* Download Resume button */
+.s1-resume-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 8px 16px;
+  border: 1.5px solid #4285f4;
+  border-radius: 6px;
+  background: #fff;
+  color: #4285f4;
+  font-size: 13px;
+  font-weight: 600;
+  font-family: 'Google Sans', 'Roboto', sans-serif;
+  cursor: pointer;
+  text-decoration: none;
+  transition: background 0.18s, color 0.18s;
+}
+
+.s1-resume-btn:hover {
+  background: #e8f0fe;
+}
+
+/* ── Responsive ───────────────────────────────────────────────────────────── */
+@media (max-width: 540px) {
+  .s1-container {
+    padding: 18px 16px 16px;
+  }
+
+  .s1-name {
+    font-size: 16px;
+  }
+
+  .s1-footer {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+  }
+}
