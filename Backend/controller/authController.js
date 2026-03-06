@@ -242,17 +242,6 @@ exports.UpdateProfile = async (req, res) => {
     if (bio) {
       updateFields["profile.bio"] = bio;
     }
-    console.log(req.file);
-    // if (req.file) {
-    //   const result = await cloudinary.uploader.upload(req.file.path, {
-    //     resource_type: "raw",
-    //     folder: "resumes",
-    //     use_filename: true,
-    //     unique_filename: false,
-    //   });
-    //   console.log("result : " + result);
-    //   updateFields["profile.resume"] = result.secure_url;
-    // }
 
     if (req.file) {
       const result = await cloudinary.uploader.upload(req.file.path, {
@@ -307,8 +296,8 @@ exports.logout = (req, res) => {
   // clear the auth cookie
   res.clearCookie("token", {
     httpOnly: true,
-    secure: false,
-    sameSite: "lax",
+    secure: true,
+    sameSite: "None",
   });
   return res.status(200).json({ message: "Logged out successfully" });
 };
