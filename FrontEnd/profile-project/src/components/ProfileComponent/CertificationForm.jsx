@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { useForm } from "react-hook-form";
 import { useAuth } from "../../context/authContext";
 import { AddCertification, UpdateCertification } from "../../api/userAuth";
@@ -11,7 +11,6 @@ const CertificationForm = ({ defaultValues = {}, onClose }) => {
     register,
     handleSubmit,
     watch,
-    setValue,
     formState: { errors },
   } = useForm({
     defaultValues: {

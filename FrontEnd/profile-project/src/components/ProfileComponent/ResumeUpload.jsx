@@ -1,9 +1,8 @@
-import React, { useState } from "react";
+import React from "react";
 import { FiUploadCloud, FiFile } from "react-icons/fi";
 import "./ResumeUpload.css";
-const ResumeUpload = ({ register, watch,setValue }) => {
+const ResumeUpload = ({ register, watch }) => {
   const file = watch("resume");
-  // const [fileKey, setFileKey] = useState(Date.now());
 
   return (
     <div className="resume-upload-container">
@@ -22,12 +21,10 @@ const ResumeUpload = ({ register, watch,setValue }) => {
             <span className="upload-btn">UPLOAD RESUME</span>
 
             <input
-              // key={fileKey}
               type="file"
               accept=".pdf,.doc,.docx"
               {...register("resume")}
               className="hidden-input"
-              // onChange={() => setFileKey(Date.now())}
             />
           </>
         )}

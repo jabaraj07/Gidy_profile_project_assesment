@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import { useAuth } from "../../context/authContext";
 import SkillForm from "./SkillForm";
 
 const Section6 = ({ user, openAdd = false, onCloseAdd }) => {
