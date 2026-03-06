@@ -10,7 +10,7 @@ export const AuthProvider = ({ children }) => {
   const fetchUser = async () => {
     try {
       const userDetails = await getCurrentUser();
-      console.log("UserDetails : "+JSON.stringify(userDetails.data))
+      // console.log("UserDetails : "+JSON.stringify(userDetails.data))
       setUser(userDetails.data.user);
     } catch (error) {
       if (error.response?.status === 401) {
