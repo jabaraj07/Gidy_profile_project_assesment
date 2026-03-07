@@ -8,9 +8,9 @@
 
 body {
   min-height: 100vh;
-  display: flex;
+  /* display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: center; */
   background: #f0f4f8;
   font-family: "Google Sans", "Roboto", sans-serif;
 }

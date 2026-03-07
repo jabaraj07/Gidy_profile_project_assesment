@@ -3,7 +3,7 @@ import LoginForm from '../features/auth/LoginForm'
 
 const LoginPage = () => {
   return (
-    <div>
+    <div className='auth-div'>
         <LoginForm/>
     </div>
   )
