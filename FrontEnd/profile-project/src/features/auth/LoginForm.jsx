@@ -18,6 +18,7 @@ const LoginForm = () => {
 
   const { setUser } = useAuth();
   const navigate = useNavigate();
+
   const onSubmit = async (data) => {
     try {
       const response = await loginUser(data);
@@ -36,7 +37,12 @@ const LoginForm = () => {
       if (error.response?.status === 401) {
         setError("root", {
           type: "server",
-          message: "Invalid email or password",
+          message: error.response.data.message || "Invalid email or password",
+        });
+      } else {
+        setError("root", {
+          type: "server",
+          message: "Something went wrong. Please try again.",
         });
       }
     }
@@ -47,7 +53,7 @@ const LoginForm = () => {
       <div className="login-card">
         {/* Logo */}
         <div className="logo-wrap">
-          <Logo/>
+          <Logo />
         </div>
 
         <h1 className="card-title">Welcome</h1>

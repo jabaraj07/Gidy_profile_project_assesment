@@ -28,7 +28,12 @@ const SignupForm = () => {
       if (error.response?.status === 400) {
         setError("root", {
           type: "server",
-          message: "User Already Exists",
+          message: error.response.data.message || "User Already Exists",
+        });
+      } else {
+        setError("root", {
+          type: "server",
+          message: "Something went wrong. Please try again.",
         });
       }
     }
