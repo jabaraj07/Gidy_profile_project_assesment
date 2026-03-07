@@ -16,7 +16,6 @@ const allowedOrigins = process.env.ALLOWED_ORIGINS.split(",");
 app.use(
   cors({
     origin: (origin, callback) => {
-      // allow requests with no origin (like Postman) or from allowed list
       if (!origin || allowedOrigins.includes(origin)) {
         callback(null, true);
       } else {
