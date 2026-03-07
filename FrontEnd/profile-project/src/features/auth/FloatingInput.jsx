@@ -73,11 +73,11 @@ const FloatingInput = ({
             tabIndex={-1}
           >
             {showPassword ? (
-              // Eye-off icon
-              <EyeOffIcon />
-            ) : (
               // Eye icon
               <EyeIcon />
+            ) : (
+              // Eye-off icon
+              <EyeOffIcon />
             )}
           </button>
         )}
