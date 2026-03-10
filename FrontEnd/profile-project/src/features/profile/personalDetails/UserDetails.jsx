@@ -1,7 +1,7 @@
 import React, { useState, useRef, useEffect } from "react";
-import "../ProfileComponentStyles/Section1.css";
+import "./UserDetails.css";
 
-const Section1 = ({ user, openEditForm }) => {
+const UserDetails = ({ user, openEditForm }) => {
   const [showDropDown, setShowDropDown] = useState(false);
   const dropdownRef = useRef(null);
 
@@ -113,4 +113,4 @@ const Section1 = ({ user, openEditForm }) => {
   );
 };
 
-export default Section1;
+export default UserDetails;

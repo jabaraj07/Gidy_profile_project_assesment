@@ -1,9 +1,13 @@
 import React, { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { useAuth } from "../../context/authContext";
-import { addProfile } from "../../api/userAuth";
+import { addProfile } from "../../api/profileApi";
 import { useNavigate } from "react-router-dom";
 import "./ProfileForm.css";
+import CameraIcon from "../../components/icons/CameraIcon";
+import ProfileIcon from "../../components/icons/ProfileIcon";
+import InputField from "../../components/common/InputField";
+import SelectInput from "../../components/common/SelectInput";
 
 const ProfileForm = () => {
   const {
@@ -49,6 +53,14 @@ const ProfileForm = () => {
     }
   };
 
+  const Describe = [
+    { label: "Job Seeker", value: "jobseeker" },
+    { label: "Intern", value: "intern" },
+    { label: "Student", value: "student" },
+    { label: "Recruiter", value: "recruiter" },
+    { label: "Freelancer", value: "freelancer" },
+  ];
+
   return (
     <div className="profile-page">
       <div className="profile-card">
@@ -67,20 +79,17 @@ const ProfileForm = () => {
                   <img src={preview} alt="Profile preview" />
                 ) : (
                   /* Person silhouette SVG */
-                  <svg viewBox="0 0 24 24" fill="currentColor">
-                    <path d="M12 12c2.7 0 4.8-2.1 4.8-4.8S14.7 2.4 12 2.4 7.2 4.5 7.2 7.2 9.3 12 12 12zm0 2.4c-3.2 0-9.6 1.6-9.6 4.8v2.4h19.2v-2.4c0-3.2-6.4-4.8-9.6-4.8z"/>
-                  </svg>
+                  <ProfileIcon />
                 )}
               </div>
               <div className="profile-avatar__camera">
                 {/* Camera icon */}
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                  <path d="M23 19a2 2 0 01-2 2H3a2 2 0 01-2-2V8a2 2 0 012-2h4l2-3h6l2 3h4a2 2 0 012 2z"/>
-                  <circle cx="12" cy="13" r="4"/>
-                </svg>
+                <CameraIcon />
               </div>
             </div>
-            <p className="profile-avatar__label">Click to upload your profile picture</p>
+            <p className="profile-avatar__label">
+              Click to upload your profile picture
+            </p>
             <input
               id="profileImage"
               type="file"
@@ -97,63 +106,58 @@ const ProfileForm = () => {
           <div className="profile-form__fields">
             {/* First Name */}
             <div className="profile-field">
-              <label className="profile-field__label" htmlFor="name">
-                First Name <span>*</span>
-              </label>
-              <input
-                id="name"
-                type="text"
-                className={`profile-field__input${errors.name ? " error" : ""}`}
-                {...register("name", { required: "First name is required" })}
+              <InputField
+                label="First Name"
+                spanElement="*"
+                name="name"
+                register={register}
+                errors={errors}
+                rules={{ required: "First Name is Required" }}
+                className="profile-field__input"
+                errorClassName="profile-field__error"
+                labelClassName="profile-field__label"
               />
-              {errors.name && (
-                <p className="profile-field__error">{errors.name.message}</p>
-              )}
             </div>
 
             {/* Last Name */}
             <div className="profile-field">
-              <label className="profile-field__label" htmlFor="lastName">
-                Last Name <span>*</span>
-              </label>
-              <input
-                id="lastName"
-                type="text"
-                className={`profile-field__input${errors.lastName ? " error" : ""}`}
-                {...register("lastName", { required: "Last name is required" })}
+              <InputField
+                label="Last Name"
+                spanElement="*"
+                name="lastName"
+                register={register}
+                errors={errors}
+                rules={{ required: "Last Name is Required" }}
+                className="profile-field__input"
+                errorClassName="profile-field__error"
+                labelClassName="profile-field__label"
               />
-              {errors.lastName && (
-                <p className="profile-field__error">{errors.lastName.message}</p>
-              )}
             </div>
 
             {/* What Best Describes You */}
             <div className="profile-field">
-              <label className="profile-field__label" htmlFor="Describe">
-                What Best Describes You? <span>*</span>
-              </label>
-              <div className="profile-field__select-wrap">
-                <select
-                  id="Describe"
-                  className={`profile-field__select${errors.Describe ? " error" : ""}`}
-                  {...register("Describe", { required: "Please select an option" })}
-                  defaultValue=""
-                >
-                  <option value="" disabled>Select an option</option>
-                  <option value="jobseeker">Job Seeker</option>
-                  <option value="intern">Intern</option>
-                  <option value="student">Student</option>
-                  <option value="recruiter">Recruiter</option>
-                  <option value="freelancer">Freelancer</option>
-                </select>
-              </div>
-              {errors.Describe && (
-                <p className="profile-field__error">{errors.Describe.message}</p>
-              )}
+
+              <SelectInput
+                label="What Best Describes You?"
+                spanElement="*"
+                name="Describe"
+                rules={{ required: "Please select an option" }}
+                register={register}
+                options={Describe}
+                errors={errors}
+                defaultValue="Select an option"
+                errorClassName="profile-field__error"
+                optionsDivClassName="profile-field__select-wrap"
+                SelectClass="profile-field__select"
+              />
             </div>
           </div>
 
-          <button type="submit" className="profile-submit-btn" disabled={isSubmitting}>
+          <button
+            type="submit"
+            className="profile-submit-btn"
+            disabled={isSubmitting}
+          >
             {isSubmitting ? "Saving…" : "Continue"}
           </button>
         </form>

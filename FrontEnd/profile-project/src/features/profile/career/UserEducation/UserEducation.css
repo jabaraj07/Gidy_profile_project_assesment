@@ -1,0 +1,194 @@
+@import url('https://fonts.googleapis.com/css2?family=Google+Sans:wght@400;500;600;700&display=swap');
+
+/* ── Container ────────────────────────────────────────────────────────────── */
+.s4-container,
+.s5-container {
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 1px 6px rgba(0, 0, 0, 0.08), 0 0 0 1px rgba(0, 0, 0, 0.04);
+  padding: 22px 24px 20px;
+  margin-bottom: 20px;
+  font-family: 'Google Sans', 'Roboto', sans-serif;
+}
+
+/* ── Header row ───────────────────────────────────────────────────────────── */
+.s4-header,
+.s5-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+}
+
+.s4-title,
+.s5-title {
+  font-size: 17px;
+  font-weight: 700;
+  color: #202124;
+  margin: 0;
+}
+
+.s4-add-btn,
+.s5-add-btn {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  border: 1.5px solid #dadce0;
+  background: #fff;
+  color: #5f6368;
+  font-size: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background 0.15s, border-color 0.15s;
+  line-height: 1;
+  padding: 0;
+}
+
+.s4-add-btn:hover,
+.s5-add-btn:hover {
+  background: #f1f3f4;
+  border-color: #bdc1c6;
+}
+
+/* ── Empty state ──────────────────────────────────────────────────────────── */
+.s4-empty,
+.s5-empty {
+  text-align: center;
+  padding: 12px 0 6px;
+  font-size: 14px;
+  color: #80868b;
+  cursor: pointer;
+}
+
+/* ── Item row ─────────────────────────────────────────────────────────────── */
+.s4-item,
+.s5-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  padding: 10px 0;
+  border-top: 1px solid #f1f3f4;
+}
+
+.s4-item:first-of-type,
+.s5-item:first-of-type {
+  border-top: none;
+}
+
+/* Icon box */
+.s4-logo,
+.s5-logo {
+  width: 46px;
+  height: 46px;
+  border-radius: 8px;
+  border: 1.5px solid #e8eaed;
+  background: #f0f4ff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  color: #4285f4;
+}
+
+/* Info block */
+.s4-info,
+.s5-info {
+  flex: 1;
+  min-width: 0;
+}
+
+.s4-primary,
+.s5-primary {
+  font-size: 14px;
+  font-weight: 600;
+  color: #202124;
+  margin: 0 0 2px;
+}
+
+.s4-secondary,
+.s5-secondary {
+  font-size: 13px;
+  color: #3c4043;
+  margin: 0 0 2px;
+}
+
+.s4-meta,
+.s5-meta {
+  font-size: 12px;
+  color: #80868b;
+  margin: 0;
+}
+
+/* ── Three-dot menu ───────────────────────────────────────────────────────── */
+.s4-menu-wrap,
+.s5-menu-wrap {
+  position: relative;
+  flex-shrink: 0;
+}
+
+.s4-menu-btn,
+.s5-menu-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 20px;
+  color: #5f6368;
+  padding: 2px 6px;
+  border-radius: 50%;
+  line-height: 1;
+  transition: background 0.15s;
+}
+
+.s4-menu-btn:hover,
+.s5-menu-btn:hover {
+  background: #f1f3f4;
+}
+
+.s4-dropdown,
+.s5-dropdown {
+  position: absolute;
+  right: 0;
+  top: 28px;
+  background: #fff;
+  border: 1px solid #e8eaed;
+  border-radius: 8px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12);
+  z-index: 10;
+  min-width: 160px;
+  overflow: hidden;
+}
+
+.s4-dropdown__item,
+.s5-dropdown__item {
+  padding: 10px 16px;
+  font-size: 13px;
+  color: #202124;
+  cursor: pointer;
+  font-family: 'Google Sans', 'Roboto', sans-serif;
+  transition: background 0.15s;
+}
+
+.s4-dropdown__item:hover,
+.s5-dropdown__item:hover {
+  background: #f1f3f4;
+}
+
+.s4-dropdown__item--danger,
+.s5-dropdown__item--danger {
+  color: #d32f2f;
+}
+
+.s4-dropdown__item--danger:hover,
+.s5-dropdown__item--danger:hover {
+  background: #fce8e6;
+}
+
+/* ── Responsive ───────────────────────────────────────────────────────────── */
+@media (max-width: 480px) {
+  .s4-container,
+  .s5-container {
+    padding: 18px 16px 16px;
+  }
+}

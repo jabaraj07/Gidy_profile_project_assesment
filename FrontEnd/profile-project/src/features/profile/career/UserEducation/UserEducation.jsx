@@ -1,43 +1,13 @@
-import React, { useState, useEffect, useRef } from "react";
-import { useAuth } from "../../context/authContext";
-import EducationForm from "./EducationForm";
-import { DeleteEducation } from "../../api/userAuth";
-import "../ProfileComponentStyles/Section4.css";
+import React, { useState, useEffect } from "react";
+import { useAuth } from "../../../../context/authContext";
+import EducationForm from "../Form/EducationForm";
+import { DeleteEducation } from "../../../../api/educationApi";
+import "./UserEducation.css";
+import GradIcon from "../../../../components/icons/GradIcon";
+import ItemMenu from "../../../../components/common/ItemMenu/ItemMenu";
 
-// ── Graduation cap icon ───────────────────────────────────────────────────────
-const GradIcon = () => (
-  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
-    <path d="M22 10v6M2 10l10-5 10 5-10 5-10-5z"/>
-    <path d="M6 12v5c3.33 1.67 8.67 1.67 12 0v-5"/>
-  </svg>
-);
 
-// ── Per-item dropdown menu ────────────────────────────────────────────────────
-const ItemMenu = ({ prefix, onEdit, onDelete }) => {
-  const [open, setOpen] = useState(false);
-  const ref = useRef(null);
-
-  useEffect(() => {
-    const h = (e) => { if (ref.current && !ref.current.contains(e.target)) setOpen(false); };
-    document.addEventListener("mousedown", h);
-    return () => document.removeEventListener("mousedown", h);
-  }, []);
-
-  return (
-    <div className={`${prefix}-menu-wrap`} ref={ref}>
-      <button className={`${prefix}-menu-btn`} onClick={() => setOpen(p => !p)} aria-label="More options">⋮</button>
-      {open && (
-        <div className={`${prefix}-dropdown`}>
-          <div className={`${prefix}-dropdown__item`} onClick={() => { onEdit(); setOpen(false); }}>Edit education</div>
-          <div className={`${prefix}-dropdown__item ${prefix}-dropdown__item--danger`} onClick={() => { onDelete(); setOpen(false); }}>Delete</div>
-        </div>
-      )}
-    </div>
-  );
-};
-
-// ── Section4 ──────────────────────────────────────────────────────────────────
-const Section4 = ({ user, openAdd = false, onCloseAdd }) => {
+const UserEducation = ({ user, openAdd = false, onCloseAdd }) => {
   const education = user?.education || [];
   const { fetchUser } = useAuth();
 
@@ -100,4 +70,4 @@ const Section4 = ({ user, openAdd = false, onCloseAdd }) => {
   );
 };
 
-export default Section4;
+export default UserEducation;

@@ -1,8 +1,8 @@
 import React from "react";
 import { useForm, Controller } from "react-hook-form";
 import CreatableSelect from "react-select/creatable";
-import { useAuth } from "../../context/authContext";
-import { UpdateSkills } from "../../api/userAuth";
+import { useAuth } from "../../../../context/authContext";
+import { UpdateSkills } from "../../../../api/profileApi";
 
 const SkillForm = ({ defaultValues = [], onClose }) => {
   const { fetchUser } = useAuth();

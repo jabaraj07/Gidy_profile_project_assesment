@@ -9,19 +9,32 @@ const InputField = ({
   required,
   readOnly = false,
   disabled = false,
+  className = "",
+  errorClassName = "",
+  labelClassName = "",
+  spanElement,
   ...rest
 }) => {
+  const hasError = errors?.[name];
   return (
-    <div>
-      <label>{label}</label>
+    <>
+      {label && (
+        <label className={labelClassName} htmlFor={name}>
+          {label} <span>{spanElement && spanElement}</span>
+        </label>
+      )}
       <input
+        id={name}
         {...register(name, rules)}
+        className={[className, hasError && "error"].filter(Boolean).join(" ")}
         readOnly={readOnly}
         disabled={disabled}
         {...rest}
       />
-      {errors?.[name] && <p style={{ color: "red" }}>{errors[name].message}</p>}
-    </div>
+      {hasError && (
+        <p className={errorClassName}>{errors[name].message}</p>
+      )}
+    </>
   );
 };
 

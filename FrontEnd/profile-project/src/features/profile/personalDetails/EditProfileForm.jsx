@@ -1,8 +1,12 @@
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
-import { useAuth } from "../../context/authContext";
-import { UpdateProfile } from "../../api/userAuth";
+import { useAuth } from "../../../context/authContext";
 import "./EditProfileForm.css";
+import { UpdateProfile } from "../../../api/profileApi";
+import CheckIcon from "../../../components/icons/CheckIcon";
+import UploadIcon from "../../../components/icons/UploadIcon";
+import ProfileIcon from "../../../components/icons/ProfileIcon";
+import EditPencilIcon from "../../../components/icons/EditPencilIcon";
 
 const ResumeUpload = ({ register, watch }) => {
   const resumeFile = watch("resume");
@@ -21,33 +25,9 @@ const ResumeUpload = ({ register, watch }) => {
       />
       <div className="resume-upload__icon">
         {hasFile ? (
-          <svg
-            width="36"
-            height="36"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="1.8"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-          >
-            <polyline points="20 6 9 17 4 12" />
-          </svg>
+          <CheckIcon/>
         ) : (
-          <svg
-            width="36"
-            height="36"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="1.6"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-          >
-            <polyline points="16 16 12 12 8 16" />
-            <line x1="12" y1="12" x2="12" y2="21" />
-            <path d="M20.39 18.39A5 5 0 0018 9h-1.26A8 8 0 103 16.3" />
-          </svg>
+          <UploadIcon/>
         )}
       </div>
       <span className="resume-upload__btn">
@@ -131,9 +111,7 @@ const EditProfileForm = ({ user, closeForm }) => {
               />
             ) : (
               <div className="edit-avatar__placeholder">
-                <svg viewBox="0 0 24 24" fill="currentColor">
-                  <path d="M12 12c2.7 0 4.8-2.1 4.8-4.8S14.7 2.4 12 2.4 7.2 4.5 7.2 7.2 9.3 12 12 12zm0 2.4c-3.2 0-9.6 1.6-9.6 4.8v2.4h19.2v-2.4c0-3.2-6.4-4.8-9.6-4.8z" />
-                </svg>
+                <ProfileIcon/>
               </div>
             )}
             {/* Blue pencil badge */}
@@ -142,19 +120,7 @@ const EditProfileForm = ({ user, closeForm }) => {
               className="edit-avatar__badge"
               title="Change photo"
             >
-              <svg
-                width="13"
-                height="13"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="white"
-                strokeWidth="2.5"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              >
-                <path d="M11 4H4a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2v-7" />
-                <path d="M18.5 2.5a2.121 2.121 0 013 3L12 15l-4 1 1-4 9.5-9.5z" />
-              </svg>
+              <EditPencilIcon/>
             </label>
             <input
               id="profileImage"

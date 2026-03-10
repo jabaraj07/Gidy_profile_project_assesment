@@ -1,14 +1,14 @@
 import React, { useState } from "react";
-import Section1 from "../components/ProfileComponent/Section1";
 import { useAuth } from "../context/authContext";
-import EditProfileForm from "../components/ProfileComponent/EditProfileForm";
-import Section2 from "../components/ProfileComponent/Section2";
-import CareerForm from "../features/auth/CareerForm";
-import Section3 from "../components/ProfileComponent/Section3";
-import Section4 from "../components/ProfileComponent/Section4";
-import Section5 from "../components/ProfileComponent/Section5";
-import Section6 from "../components/ProfileComponent/Section6";
-import ProfileCompletion from "../components/ProfileComponent/ProfileCompletion";
+import EditProfileForm from "../features/profile/personalDetails/EditProfileForm";
+import CareerForm from "../features/onboarding/CareerForm";
+import ProfileCompletion from "../features/profile/ProfileCompletionDetails/ProfileCompletion";
+import CareerGoals from "../features/profile/career/CareerGoals/CareerGoals";
+import UserDetails from "../features/profile/personalDetails/UserDetails";
+import UserExperience from "../features/profile/career/UserExperience/UserExperience";
+import UserEducation from "../features/profile/career/UserEducation/UserEducation";
+import UserCertification from "../features/profile/career/UserCertification/UserCertification";
+import UserSkills from "../features/profile/career/UserSkills/UserSkills";
 
 const UserProfilePage = () => {
   const { user } = useAuth();
@@ -24,8 +24,8 @@ const UserProfilePage = () => {
   // console.log("In userProfile-Page : ", user);
 
   return (
-    <div>
-      <Section1
+    <>
+      <UserDetails
         user={user}
         openEditForm={() => setOpenEdit(true)}
       />
@@ -47,7 +47,7 @@ const UserProfilePage = () => {
       )}
 
       <div className="profile-section">
-        <Section2 user={user} onEdit={() => setShowCareerForm(true)} />
+        <CareerGoals user={user} onEdit={() => setShowCareerForm(true)} />
       </div>
 
       {showCareerForm && (
@@ -60,7 +60,7 @@ const UserProfilePage = () => {
 
       <div className="profile-sections">
         <div className="profile-section">
-          <Section3
+          <UserExperience
             user={user}
             openAdd={openExperienceForm}
             onCloseAdd={() => setOpenExperienceForm(false)}
@@ -68,7 +68,7 @@ const UserProfilePage = () => {
         </div>
 
         <div className="profile-section">
-          <Section4
+          <UserEducation
             user={user}
             openAdd={openEducationForm}
             onCloseAdd={() => setOpenEducationForm(false)}
@@ -76,7 +76,7 @@ const UserProfilePage = () => {
         </div>
 
         <div className="profile-section">
-          <Section5
+          <UserCertification
             user={user}
             openAdd={openCertificationForm}
             onCloseAdd={() => setOpenCertificationForm(false)}
@@ -84,14 +84,14 @@ const UserProfilePage = () => {
         </div>
 
         <div className="profile-section">
-          <Section6
+          <UserSkills
             user={user}
             openAdd={openSkillForm}
             onCloseAdd={() => setOpenSkillForm(false)}
           />
         </div>
       </div>
-    </div>
+    </>
   );
 };
 

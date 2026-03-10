@@ -7,7 +7,7 @@ import ProfilePage from "./pages/ProfilePage";
 import { AuthProvider } from "./context/authContext";
 import CareerPage from "./pages/CareerPage";
 import UserProfilePage from "./pages/UserProfilePage";
-import PageLayout from "./components/PageLayout";
+import PageLayout from "./layout/PageLayout";
 
 function App() {
   return (

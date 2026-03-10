@@ -1,8 +1,8 @@
 import React from "react";
 import { useForm } from "react-hook-form";
-import { useAuth } from "../../context/authContext";
-import { AddCertification, UpdateCertification } from "../../api/userAuth";
-import InputField from "../common/InputField";
+import { useAuth } from "../../../../context/authContext";
+import { AddCertification, UpdateCertification } from "../../../../api/certificationApi";
+import InputField from "../../../../components/common/InputField";
 
 const CertificationForm = ({ defaultValues = {}, onClose }) => {
   const { fetchUser } = useAuth();

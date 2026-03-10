@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
-import SkillForm from "./SkillForm";
-import "../ProfileComponentStyles/Section6.css";
+import SkillForm from "../Form/SkillForm";
+import "./UserSkills.css";
 
-const Section6 = ({ user, openAdd = false, onCloseAdd }) => {
+const UserSkills = ({ user, openAdd = false, onCloseAdd }) => {
   const skills = user?.skills || [];
   const [showForm, setShowForm] = useState(false);
 
@@ -47,4 +47,4 @@ const Section6 = ({ user, openAdd = false, onCloseAdd }) => {
   );
 };
 
-export default Section6;
+export default UserSkills;

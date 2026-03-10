@@ -8,7 +8,6 @@ const Button = ({
   className = "",
   ...props
 }) => {
-  // console.log(children)
   return (
     <button
       type={type}

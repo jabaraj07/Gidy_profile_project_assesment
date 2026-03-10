@@ -1,5 +1,5 @@
 import { useForm } from "react-hook-form";
-import { SignupUser } from "../../api/userAuth";
+import { SignupUser } from "../../api/authApi";
 import { useNavigate } from "react-router-dom";
 import FloatingInput from "./FloatingInput";
 import "./SignupForm.css";

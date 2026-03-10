@@ -1,5 +1,5 @@
 import { useForm } from "react-hook-form";
-import { loginUser } from "../../api/userAuth";
+import { loginUser } from "../../api/authApi";
 import { useAuth } from "../../context/authContext";
 import { useNavigate } from "react-router-dom";
 import "./LoginForm.css";

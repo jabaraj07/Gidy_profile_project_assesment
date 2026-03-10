@@ -1,6 +1,6 @@
 import React from "react";
-import { useAuth } from "../../context/authContext";
-import "../ProfileComponentStyles/ProfileCompletion.css";
+import { useAuth } from "../../../context/authContext";
+import "./ProfileCompletion.css";
 
 const items = [
   {

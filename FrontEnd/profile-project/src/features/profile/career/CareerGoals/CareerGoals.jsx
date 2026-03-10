@@ -1,7 +1,7 @@
 import React from "react";
-import "../ProfileComponentStyles/Section2.css";
+import "./CareerGoals.css";
 
-const Section2 = ({ user, onEdit }) => {
+const CareerGoals = ({ user, onEdit }) => {
   const career = user?.careerGoals;
 
   const isCareerEmpty =
@@ -64,4 +64,4 @@ const Section2 = ({ user, onEdit }) => {
   );
 };
 
-export default Section2;
+export default CareerGoals;

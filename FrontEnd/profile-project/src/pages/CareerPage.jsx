@@ -1,5 +1,5 @@
 import React from "react";
-import CareerForm from "../features/auth/CareerForm";
+import CareerForm from "../features/onboarding/CareerForm";
 
 const CareerPage = () => {
   return (
