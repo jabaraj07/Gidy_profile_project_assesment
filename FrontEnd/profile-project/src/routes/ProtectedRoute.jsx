@@ -1,15 +1,14 @@
 import React from "react";
 import { useAuth } from "../context/authContext";
 import { Navigate } from "react-router-dom";
+import LoadingComponent from "../components/LoadingComponent";
 
 
 const ProtectedRoute = ({ children }) => {
   const { user, loading } = useAuth();
 
-  // console.log("Protected route user : ",user)
-
   if (loading) {
-    return <p>Loading...</p>;
+    return <LoadingComponent/>;
   }
 
   if (!user) {
