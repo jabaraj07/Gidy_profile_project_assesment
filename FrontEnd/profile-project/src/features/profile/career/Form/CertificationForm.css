@@ -1,0 +1,50 @@
+.FormTextarea {
+  width: 100%;
+  min-height: 120px;
+  padding: 12px 14px;
+  border: 1px solid #d0d5dd;
+  border-radius: 8px;
+  font-size: 14px;
+  font-family: inherit;
+  resize: vertical;
+  outline: none;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  box-sizing: border-box;
+}
+
+.FormTextarea:focus {
+  border-color: #1976d2;
+  box-shadow: 0 0 0 3px rgba(25, 118, 210, 0.12);
+}
+
+.FormTextarea::placeholder {
+  color: #98a2b3;
+}
+
+.btn_div{
+    display: flex;
+    justify-content: flex-end;
+    gap: 8px;
+}
+
+.Certification_form_cancel_btn{
+  padding: 10px 24px;
+  margin-right: 8px;
+  color: #374151;
+  background: none;
+  outline: none;
+  border:1px solid #d1d5db !important;
+  border-radius: 4px;
+  cursor: pointer;
+}
+.Certification_form_add_btn{
+  background-color: #1e88ff;
+  color: #fff;
+  padding: 10px 24px;
+  border-radius: 4px;
+  outline: none;
+  border: none;
+  cursor: pointer;
+  font-weight: 600;
+  letter-spacing: 0.3px;
+}

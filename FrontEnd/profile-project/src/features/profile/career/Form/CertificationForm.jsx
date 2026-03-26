@@ -1,8 +1,14 @@
 import React from "react";
 import { useForm } from "react-hook-form";
 import { useAuth } from "../../../../context/authContext";
-import { AddCertification, UpdateCertification } from "../../../../api/certificationApi";
+import {
+  AddCertification,
+  UpdateCertification,
+} from "../../../../api/certificationApi";
 import InputField from "../../../../components/common/InputField";
+import "./AllForm.css";
+import "./CertificationForm.css";
+import Button from "../../../../components/common/Button";
 
 const CertificationForm = ({ defaultValues = {}, onClose }) => {
   const { fetchUser } = useAuth();
@@ -48,51 +54,81 @@ const CertificationForm = ({ defaultValues = {}, onClose }) => {
   return (
     <div className="modal">
       <form onSubmit={handleSubmit(onSubmit)}>
-        <h2>{defaultValues._id ? "Edit Certification" : "Add Certification"}</h2>
+        <h2>
+          {defaultValues._id ? "Edit Certification" : "Add Certification"}
+        </h2>
 
-        <InputField
-          label="Certification *"
-          name="name"
-          register={register}
-          errors={errors}
-          rules={{ required: "Certification name is required" }}
-        />
-
-        <InputField
-          label="Provider *"
-          name="provider"
-          register={register}
-          errors={errors}
-          rules={{ required: "Provider is required" }}
-        />
-
-        <InputField
-          label="Certificate Url"
-          name="certificateUrl"
-          register={register}
-          errors={errors}
-        />
-
-        <InputField
-          label="Certificate ID"
-          name="certificateId"
-          register={register}
-          errors={errors}
-        />
-
-        <div>
-          <label>Issued Date</label>
-          <input
-            type="date"
-            {...register("issueDate")}
+        <div className="InputField">
+          <InputField
+            label="Certification *"
+            name="name"
+            className="FormInput"
+            register={register}
+            errors={errors}
+            rules={{ required: "Certification name is required" }}
+            labelClassName="FormInput_label"
+            errorClassName="FormInput_error"
           />
         </div>
 
-        <div>
-          <label>Expiry Date</label>
-          <input
+        <div className="InputField">
+          <InputField
+            label="Provider *"
+            name="provider"
+            className="FormInput"
+            register={register}
+            errors={errors}
+            rules={{ required: "Provider is required" }}
+            labelClassName="FormInput_label"
+            errorClassName="FormInput_error"
+          />
+        </div>
+
+        <div className="InputField">
+          <InputField
+            label="Certificate Url"
+            name="certificateUrl"
+            register={register}
+            errors={errors}
+            className="FormInput"
+            labelClassName="FormInput_label"
+          />
+        </div>
+
+        <div className="InputField">
+          <InputField
+            label="Certificate ID"
+            name="certificateId"
+            register={register}
+            errors={errors}
+            className="FormInput"
+            labelClassName="FormInput_label"
+          />
+        </div>
+
+        <div className="InputField">
+          <InputField
             type="date"
-            {...register("expiryDate", {
+            label="Issued Date"
+            name="issueDate"
+            register={register}
+            errors={errors}
+            className="FormInput"
+            labelClassName="FormInput_label"
+          />
+        </div>
+
+        <div className="InputField">
+          <InputField
+            label="Expiry Date"
+            name="expiryDate"
+            type="date"
+            register={register}
+            errors={errors}
+            className="FormInput"
+            labelClassName="FormInput_label"
+            errorClassName="FormInput_error"
+            rules={{
               validate: (val) => {
                 const issue = watch("issueDate");
                 if (val && issue && new Date(val) < new Date(issue)) {
@@ -100,25 +136,33 @@ const CertificationForm = ({ defaultValues = {}, onClose }) => {
                 }
                 return true;
               },
-            })}
+            }}
           />
-          {errors.expiryDate && (
-            <p style={{ color: "red" }}>{errors.expiryDate.message}</p>
-          )}
         </div>
 
-        <div>
-          <label>Description</label>
+        <div className="InputField">
+          <label className="FormInput_label" htmlFor="description">
+            Description
+          </label>
+
           <textarea
+            id="description"
+            className="FormTextarea"
             {...register("description")}
-            placeholder="max character (200 - 0)"
+            placeholder="Max 200 characters"
+            rows={5}
           />
         </div>
 
-        <button type="button" onClick={onClose} style={{ marginRight: "8px" }}>
-          Cancel
-        </button>
-        <button type="submit">{defaultValues._id ? "Update" : "Add"}</button>
+        <div className="btn_div">
+          <Button onclick={onClose} className="Certification_form_cancel_btn">
+            Cancel
+          </Button>
+
+          <Button type="submit" className="Certification_form_add_btn">
+            {defaultValues._id ? "Update" : "Add"}
+          </Button>
+        </div>
       </form>
     </div>
   );
