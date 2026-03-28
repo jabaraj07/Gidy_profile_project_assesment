@@ -3,7 +3,7 @@ const user = require("../models/User");
 const bcrypt = require("bcrypt");
 const calculateProfileCompletion = require("../utils/profileCompletion");
 const cloudinary = require("../config/cloudinary");
-
+const fs = require("fs");
 exports.register = async (req, res) => {
   try {
     const { name, email, password } = req.body;
@@ -79,17 +79,11 @@ exports.updateProfile = async (req, res) => {
   try {
     const userId = req.user.id;
     const { lastName, whatBestDescribeYou } = req.body;
-    // console.log("UserId : ", userId);
-    // console.log(lastName, whatBestDescribeYou);
-
-    // console.log("req.file:", req.file);
-    // console.log("Cloudinary API Key:", process.env.CLOUDINARY_API_KEY);
 
     let imageUrl;
     if (req.file) {
+      const filePath = req.file.path.replace(/\\/g, "/");
       try {
-        const filePath = req.file.path.replace(/\\/g, "/");
-
         const result = await cloudinary.uploader.upload(filePath, {
           folder: "profile_images",
         });
@@ -97,6 +91,12 @@ exports.updateProfile = async (req, res) => {
         imageUrl = result.secure_url;
       } catch (err) {
         console.error("Cloudinary upload error:", err);
+      } finally {
+        if (fs.existsSync(filePath)) {
+          fs.unlink(filePath, (err) => {
+            if (err) console.error("Temp file delete error:", err);
+          });
+        }
       }
     }
 
@@ -134,19 +134,39 @@ exports.UpdateProfileInUser = async (req, res) => {
 
     if (req.files?.profileImage?.length) {
       const filePath = req.files.profileImage[0].path.replace(/\\/g, "/");
-      const result = await cloudinary.uploader.upload(filePath, {
-        folder: "profile_images",
-      });
-      profileImageUrl = result.secure_url;
+      try {
+        const result = await cloudinary.uploader.upload(filePath, {
+          folder: "profile_images",
+        });
+        profileImageUrl = result.secure_url;
+      } catch (error) {
+        console.error("Cloudinary upload error:", err);
+      } finally {
+        if (fs.existsSync(filePath)) {
+          fs.unlink(filePath, (err) => {
+            if (err) console.error("Temp file delete error:", err);
+          });
+        }
+      }
     }
 
     if (req.files?.resume?.length) {
       const filePath = req.files.resume[0].path.replace(/\\/g, "/");
-      const result = await cloudinary.uploader.upload(filePath, {
-        folder: "resumes",
-        resource_type: "auto",
-      });
-      resumeUrl = result.secure_url;
+      try {
+        const result = await cloudinary.uploader.upload(filePath, {
+          folder: "resumes",
+          resource_type: "auto",
+        });
+        resumeUrl = result.secure_url;
+      } catch (error) {
+        console.error("Cloudinary upload error:", err);
+      } finally {
+        if (fs.existsSync(filePath)) {
+          fs.unlink(filePath, (err) => {
+            if (err) console.error("Temp file delete error:", err);
+          });
+        }
+      }
     }
 
     // Find existing user

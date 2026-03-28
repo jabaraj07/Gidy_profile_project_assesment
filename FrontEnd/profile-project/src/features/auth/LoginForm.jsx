@@ -1,7 +1,7 @@
 import { useForm } from "react-hook-form";
 import { loginUser } from "../../api/authApi";
 import { useAuth } from "../../context/authContext";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import "./LoginForm.css";
 import FloatingInput from "./FloatingInput";
 import Logo from "../../components/icons/Logo";
@@ -105,16 +105,7 @@ const LoginForm = () => {
 
         <div className="signup-row">
           Don't have an account?
-          <a
-            href="/signup"
-            onClick={(e) => {
-              if (isSubmitting) {
-                e.preventDefault();
-              }
-            }}
-          >
-            Sign up
-          </a>
+          <Link to="/signup">Sign up</Link>
         </div>
       </div>
     </>

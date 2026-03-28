@@ -31,7 +31,7 @@ const CareerForm = ({ mode = "onboarding", onClose }) => {
         ...data,
         longTermAspiration: data.longTermAspiration?.value, // extract just the value string
       };
-      console.log(payload);
+      // console.log(payload);
       await AddCareer(payload);
       await fetchUser();
       if (mode === "onboarding") {

@@ -1,6 +1,6 @@
 import { useForm } from "react-hook-form";
 import { SignupUser } from "../../api/authApi";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import FloatingInput from "./FloatingInput";
 import "./SignupForm.css";
 import Logo from "../../components/icons/Logo";
@@ -19,8 +19,8 @@ const SignupForm = () => {
 
   const onSubmit = async (data) => {
     try {
-      const response = await SignupUser(data);
-      console.log(response.data);
+      await SignupUser(data);
+      // console.log(response.data);
       reset();
       navigate("/login");
     } catch (error) {
@@ -103,7 +103,7 @@ const SignupForm = () => {
         </form>
 
         <div className="login-row">
-          Already have an account?<a href="/login">Log in</a>
+          Already have an account?<Link to="/login">Log in</Link>
         </div>
       </div>
     </>
