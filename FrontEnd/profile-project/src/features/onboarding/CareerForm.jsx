@@ -6,6 +6,7 @@ import { AddCareer } from "../../api/profileApi";
 import "./CareerForm.css";
 import SelectInput from "../../components/common/SelectInput";
 import InputField from "../../components/common/InputField";
+import Button from "../../components/common/Button";
 
 const CareerForm = ({ mode = "onboarding", onClose }) => {
   const {
@@ -166,46 +167,49 @@ const CareerForm = ({ mode = "onboarding", onClose }) => {
         <div className="career-actions">
           {mode === "onboarding" && (
             <>
-              <button
+              <Button
                 type="button"
                 className="career-btn--skip"
-                onClick={handleSkip}
+                onclick={handleSkip}
               >
                 Skip This &amp; Complete
-              </button>
-              <button
+              </Button>
+
+              <Button
                 type="submit"
                 className="career-btn--primary"
                 disabled={isSubmitting}
               >
                 {isSubmitting ? "Saving…" : "Complete"}
-              </button>
-              <button
+              </Button>
+
+              <Button
                 type="button"
                 className="career-btn--back"
                 onClick={() => navigate(-1)}
               >
                 ← Back
-              </button>
+              </Button>
             </>
           )}
 
           {mode === "edit" && (
             <>
-              <button
+              <Button
                 type="submit"
                 className="career-btn--primary"
                 disabled={isSubmitting}
               >
                 {isSubmitting ? "Saving…" : "Update"}
-              </button>
-              <button
+              </Button>
+
+              <Button
                 type="button"
                 className="career-btn--cancel"
-                onClick={onClose}
+                onclick={onClose}
               >
                 Cancel
-              </button>
+              </Button>
             </>
           )}
         </div>
