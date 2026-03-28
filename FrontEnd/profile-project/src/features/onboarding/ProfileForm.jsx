@@ -8,6 +8,7 @@ import CameraIcon from "../../components/icons/CameraIcon";
 import ProfileIcon from "../../components/icons/ProfileIcon";
 import InputField from "../../components/common/InputField";
 import SelectInput from "../../components/common/SelectInput";
+import Button from "../../components/common/Button";
 
 const ProfileForm = () => {
   const {
@@ -136,7 +137,6 @@ const ProfileForm = () => {
 
             {/* What Best Describes You */}
             <div className="profile-field">
-
               <SelectInput
                 label="What Best Describes You?"
                 spanElement="*"
@@ -153,13 +153,13 @@ const ProfileForm = () => {
             </div>
           </div>
 
-          <button
+          <Button
             type="submit"
             className="profile-submit-btn"
             disabled={isSubmitting}
           >
             {isSubmitting ? "Saving…" : "Continue"}
-          </button>
+          </Button>
         </form>
       </div>
     </div>

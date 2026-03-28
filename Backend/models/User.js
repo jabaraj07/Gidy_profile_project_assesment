@@ -33,7 +33,9 @@ const UserSchema = new mongoose.Schema(
       location: { type: String, trim: true, default: "" },
       bio: { type: String, trim: true, default: "", maxlength: 500 },
       profileImage: { type: String, default: "", trim: true },
-      resume: { type: String, default: "" },
+      profileImagePublicId: { type: String, default: "", trim: true },
+      resume: { type: String, default: "",trim:true },
+      resumePublicId:{type:String, default:"",trim:true}
     },
 
     // Career Section (Optional)

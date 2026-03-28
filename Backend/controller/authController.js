@@ -81,6 +81,7 @@ exports.updateProfile = async (req, res) => {
     const { lastName, whatBestDescribeYou } = req.body;
 
     let imageUrl;
+    let publicId;
     if (req.file) {
       const filePath = req.file.path.replace(/\\/g, "/");
       try {
@@ -89,6 +90,7 @@ exports.updateProfile = async (req, res) => {
         });
 
         imageUrl = result.secure_url;
+        publicId = result.public_id;
       } catch (err) {
         console.error("Cloudinary upload error:", err);
       } finally {
@@ -112,6 +114,7 @@ exports.updateProfile = async (req, res) => {
     };
     if (imageUrl) {
       updateData.profile.profileImage = imageUrl;
+      updateData.profile.profileImagePublicId = publicId;
     }
 
     const userData = await user.findByIdAndUpdate(userId.id, updateData, {
@@ -131,6 +134,9 @@ exports.UpdateProfileInUser = async (req, res) => {
 
     let profileImageUrl;
     let resumeUrl;
+    let resumePublicId;
+    let publicId;
+    let profileImagePublicId;
 
     if (req.files?.profileImage?.length) {
       const filePath = req.files.profileImage[0].path.replace(/\\/g, "/");
@@ -139,6 +145,7 @@ exports.UpdateProfileInUser = async (req, res) => {
           folder: "profile_images",
         });
         profileImageUrl = result.secure_url;
+        publicId = result.public_id;
       } catch (error) {
         console.error("Cloudinary upload error:", err);
       } finally {
@@ -155,9 +162,10 @@ exports.UpdateProfileInUser = async (req, res) => {
       try {
         const result = await cloudinary.uploader.upload(filePath, {
           folder: "resumes",
-          resource_type: "auto",
+          resource_type: "raw",
         });
         resumeUrl = result.secure_url;
+        resumePublicId = result.public_id;
       } catch (error) {
         console.error("Cloudinary upload error:", err);
       } finally {
@@ -172,11 +180,16 @@ exports.UpdateProfileInUser = async (req, res) => {
     // Find existing user
     const existingUser = await user.findById(userId.id);
 
-    // Otherwise, keep existing URL
-    profileImageUrl = profileImageUrl || existingUser.profile.profileImage;
+    const oldImagePublicId = existingUser.profile.profileImagePublicId;
+    const oldResumePublicId = existingUser.profile.resumePublicId;
 
     // Otherwise, keep existing URL
+    profileImageUrl = profileImageUrl || existingUser.profile.profileImage;
+    profileImagePublicId =
+      publicId || existingUser.profile.profileImagePublicId;
+
     resumeUrl = resumeUrl || existingUser.profile.resume;
+    resumePublicId = resumePublicId || existingUser.profile.resumePublicId;
 
     // Prepare update
     const updateData = {
@@ -192,12 +205,27 @@ exports.UpdateProfileInUser = async (req, res) => {
     };
 
     if (profileImageUrl) updateData.profile.profileImage = profileImageUrl;
+    if (profileImagePublicId)
+      updateData.profile.profileImagePublicId = profileImagePublicId;
+    if (resumePublicId) {
+      updateData.profile.resumePublicId = resumePublicId;
+    }
     if (resumeUrl) updateData.profile.resume = resumeUrl;
 
     // Update user
     const userData = await user.findByIdAndUpdate(userId.id, updateData, {
       returnDocument: "after",
     });
+
+    if (oldImagePublicId) {
+      await cloudinary.uploader.destroy(oldImagePublicId);
+    }
+
+    if (oldResumePublicId) {
+      await cloudinary.uploader.destroy(oldResumePublicId,{
+        resource_type:"raw"
+      });
+    }
 
     res
       .status(200)
