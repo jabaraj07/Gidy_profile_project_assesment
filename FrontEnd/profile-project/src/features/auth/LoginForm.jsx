@@ -5,6 +5,7 @@ import { Link, useNavigate } from "react-router-dom";
 import "./LoginForm.css";
 import FloatingInput from "./FloatingInput";
 import Logo from "../../components/icons/Logo";
+import Button from "../../components/common/Button";
 
 const LoginForm = () => {
   const {
@@ -90,17 +91,17 @@ const LoginForm = () => {
             />
           </div>
 
-          <button type="button" className="forgot-link">
+          <Button type="button" className="forgot-link">
             Forgot password?
-          </button>
+          </Button>
 
-          <button
+          <Button
             type="submit"
             className="continue-btn"
             disabled={isSubmitting}
           >
             {isSubmitting ? "Signing in…" : "Continue"}
-          </button>
+          </Button>
         </form>
 
         <div className="signup-row">

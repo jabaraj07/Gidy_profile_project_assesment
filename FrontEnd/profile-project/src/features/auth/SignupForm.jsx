@@ -4,6 +4,7 @@ import { Link, useNavigate } from "react-router-dom";
 import FloatingInput from "./FloatingInput";
 import "./SignupForm.css";
 import Logo from "../../components/icons/Logo";
+import Button from "../../components/common/Button";
 
 const SignupForm = () => {
   const {
@@ -97,9 +98,9 @@ const SignupForm = () => {
             />
           </div>
 
-          <button type="submit" className="submit-btn" disabled={isSubmitting}>
+          <Button type="submit" className="submit-btn" disabled={isSubmitting}>
             {isSubmitting ? "Creating account…" : "Sign up"}
-          </button>
+          </Button>
         </form>
 
         <div className="login-row">
